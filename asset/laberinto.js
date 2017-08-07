@@ -185,11 +185,9 @@ right.onclick = function(){
 //implementamos el boton salir
 exit.onclick = function(){
     if(mapa[celdaActual.x][celdaActual.y]=="W"){
-        alert('Saliendo!!!!')
         genera();
     }
 }
-
 
 
 

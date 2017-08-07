@@ -1,16 +1,27 @@
 .negro{
-  background-color: black;
+  background-color: #000;
   color:white;
 }
 .salida{
-    background-image: url(flechas.png);
-    background-size: contain;
+    background-image: url(partida.png);
+    background-size: 42px 42px;
 }
 
 .fin{
     background-image: url(fin.png);
-    background-size: contain;
+    background-size: 42px 42px;
 }
+
+#libre{
+    background-color: #e7a61a; 
+}
+
+#libre{
+border-radius: 200px 200px 200px 200px;
+-moz-border-radius: 200px 200px 200px 200px;
+-webkit-border-radius: 200px 200px 200px 200px;
+}
+
 
 div p{
     font-family: monospace;

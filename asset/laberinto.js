@@ -1,3 +1,4 @@
+//Dibujando la matriz para nuestro laberinto
 var mapa=[
 "******************",
 "*_________*______*",
@@ -20,6 +21,7 @@ var celdaActual;
 
 var tablero = document.getElementById('tablero');
 
+//funcion que transforma la matriz en laberinto
 function genera(){
     tablero.innerHTML = '';
     var tabla = document.createElement('table');
@@ -55,6 +57,7 @@ function genera(){
 
 genera();
 
+//creamos e insertamos imagenes de las flechas
 var arrFlecha =[];
 
 var imgArr = document.createElement('img');
@@ -67,11 +70,7 @@ imgAba.setAttribute('src','asset/down.png');
 imgIzq.setAttribute('src','asset/left.png');
 imgDer.setAttribute('src','asset/right.png');
 
-/*imgArr.setAttribute('id','1');
-imgAba.setAttribute('id','2');
-imgIzq.setAttribute('id','3');
-imgDer.setAttribute('id','4');*/
-
+//funcion constructor que llama a las flechas
 function travel(icono) {
     this.icono= icono;
 };
@@ -86,6 +85,7 @@ arrFlecha.push(iconDown);
 arrFlecha.push(iconLeft);
 arrFlecha.push(iconRight);
 
+//implementamos el boton avanzar
 move.onclick = function(){
     if(celdaActual.direccion=='up'){
         if(mapa[celdaActual.x-1][celdaActual.y]=="_"){
@@ -106,6 +106,7 @@ move.onclick = function(){
             filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
             celdaActual.x = celdaActual.x+1;
             filas[celdaActual.x][celdaActual.y].appendChild(iconDown.icono);
+            
         }else if(mapa[celdaActual.x+1][celdaActual.y]=="W"){
             celdaActual.x = celdaActual.x+1;
             filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
@@ -122,57 +123,61 @@ move.onclick = function(){
     }
 }
 
+//implememtamos el boton que gire todas las flechas hacia el lado izquierdo
 left.onclick = function(){
     if(celdaActual.direccion=='up'){
         celdaActual.direccion ='left';
-        filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
+        filas[celdaActual.x][celdaActual.y].removeChild(iconUp.icono);
         filas[celdaActual.x][celdaActual.y].appendChild(iconLeft.icono);
         
     } else if(celdaActual.direccion == 'left'){
         celdaActual.direccion ='down';
-        filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
+        filas[celdaActual.x][celdaActual.y].removeChild(iconLeft.icono);
         filas[celdaActual.x][celdaActual.y].appendChild(iconDown.icono); 
         
     } else if(celdaActual.direccion == 'down'){
         celdaActual.direccion ='right';
-        filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
+        filas[celdaActual.x][celdaActual.y].removeChild(iconDown.icono);
         filas[celdaActual.x][celdaActual.y].appendChild(iconRight.icono);
         
     }else if(celdaActual.direccion == 'right'){
         celdaActual.direccion ='up';
-        filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
+        filas[celdaActual.x][celdaActual.y].removeChild(iconRight.icono);
         filas[celdaActual.x][celdaActual.y].appendChild(iconUp.icono); 
     }
     
 }
 
+//implementamos el boton que gira las flechas hacia la derecha
 right.onclick = function(){
     if(celdaActual.direccion=='up'){
         celdaActual.direccion ='right';
-        filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
+        filas[celdaActual.x][celdaActual.y].removeChild(iconUp.icono);
         filas[celdaActual.x][celdaActual.y].appendChild(iconRight.icono);
         
     } else if(celdaActual.direccion == 'right'){
         celdaActual.direccion ='down';
-        filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
+        filas[celdaActual.x][celdaActual.y].removeChild(iconRight.icono);
         filas[celdaActual.x][celdaActual.y].appendChild(iconDown.icono); 
         
     } else if(celdaActual.direccion == 'down'){
         celdaActual.direccion ='left';
-        filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
+        filas[celdaActual.x][celdaActual.y].removeChild(iconDown.icono);
         filas[celdaActual.x][celdaActual.y].appendChild(iconLeft.icono);
         
     }else if(celdaActual.direccion == 'left'){;
         celdaActual.direccion ='up';
-        filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
+        filas[celdaActual.x][celdaActual.y].removeChild(iconLeftd.icono);
         filas[celdaActual.x][celdaActual.y].appendChild(iconUp.icono); 
     }
     
 }
 
+//implementamos el boton salir
 exit.onclick = function(){
     if(mapa[celdaActual.x][celdaActual.y]=="W"){
         alert('Saliendo!!!!')
+        genera();
     }
 }
 

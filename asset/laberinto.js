@@ -14,7 +14,7 @@ var mapa=[
 
 var filas = new Array(mapa.length);
 for(var i =0; i<filas.length; i++){
-    filas[i]= new Array(mapa[0].length);
+    filas[i]= new Array(mapa[i].length);
 }
 
 var celdaActual;
@@ -70,6 +70,11 @@ imgAba.setAttribute('src','asset/down.png');
 imgIzq.setAttribute('src','asset/left.png');
 imgDer.setAttribute('src','asset/right.png');
 
+/*imgArr.setAttribute('id','1');
+imgAba.setAttribute('id','2');
+imgIzq.setAttribute('id','3');
+imgDer.setAttribute('id','4');*/
+
 //funcion constructor que llama a las flechas
 function travel(icono) {
     this.icono= icono;
@@ -92,6 +97,7 @@ move.onclick = function(){
             filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
             celdaActual.x = celdaActual.x-1;
             filas[celdaActual.x][celdaActual.y].appendChild(iconUp.icono);
+            filas[celdaActual.x][celdaActual.y].style.backgroundColor = '#BBE4E3';
         }else{alert('pared!!!!')}
         
     } else if(celdaActual.direccion=='right'){
@@ -99,6 +105,7 @@ move.onclick = function(){
             filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
             celdaActual.y = celdaActual.y+1;
             filas[celdaActual.x][celdaActual.y].appendChild(iconRight.icono);
+            filas[celdaActual.x][celdaActual.y].style.backgroundColor = '#BBE4E3';
         }else{alert('pared!!!!')}
         
     } else if(celdaActual.direccion=='down'){
@@ -106,6 +113,7 @@ move.onclick = function(){
             filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
             celdaActual.x = celdaActual.x+1;
             filas[celdaActual.x][celdaActual.y].appendChild(iconDown.icono);
+            filas[celdaActual.x][celdaActual.y].style.backgroundColor = '#BBE4E3';
             
         }else if(mapa[celdaActual.x+1][celdaActual.y]=="W"){
             celdaActual.x = celdaActual.x+1;
@@ -119,6 +127,7 @@ move.onclick = function(){
             filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
             celdaActual.y = celdaActual.y-1;
             filas[celdaActual.x][celdaActual.y].appendChild(iconLeft.icono);
+            filas[celdaActual.x][celdaActual.y].style.backgroundColor = '#BBE4E3';
         }else{alert('pared!!!!')}
     }
 }
@@ -167,7 +176,7 @@ right.onclick = function(){
         
     }else if(celdaActual.direccion == 'left'){;
         celdaActual.direccion ='up';
-        filas[celdaActual.x][celdaActual.y].removeChild(iconLeftd.icono);
+        filas[celdaActual.x][celdaActual.y].removeChild(iconLeft.icono);
         filas[celdaActual.x][celdaActual.y].appendChild(iconUp.icono); 
     }
     

@@ -118,6 +118,7 @@ move.onclick = function(){
         }else if(mapa[celdaActual.x+1][celdaActual.y]=="W"){
             celdaActual.x = celdaActual.x+1;
             filas[celdaActual.x][celdaActual.y].removeChild(filas[celdaActual.x][celdaActual.y].firstChild);
+            filas[celdaActual.x][celdaActual.y].appendChild(iconDown.icono);
             filas[celdaActual.x][celdaActual.y].style.backgroundColor = '#f52f0c';
             alert('fin')
         }else{alert('pared!!!!')}
@@ -130,6 +131,7 @@ move.onclick = function(){
             filas[celdaActual.x][celdaActual.y].style.backgroundColor = '#BBE4E3';
         }else{alert('pared!!!!')}
     }
+    console.log(celdaActual.x+'---'+celdaActual.y+'---'+celdaActual.direccion);
 }
 
 //implememtamos el boton que gire todas las flechas hacia el lado izquierdo
@@ -184,10 +186,25 @@ right.onclick = function(){
 
 //implementamos el boton salir
 exit.onclick = function(){
-    if(mapa[celdaActual.x][celdaActual.y]=="W"){
+    if(mapa[celdaActual.x][celdaActual.y]=="W" || mapa[celdaActual.x][celdaActual.y]=="_"){
         genera();
     }
 }
 
+//implementamos la solucion automatica
 
+var contador=0;
+function correr(){
+    move.onclick();
+    var pos_x = celdaActual.x;
+    var pos_y = celdaActual.y;
 
+    left.onclick();
+    
+    if(celdaActual.x == pos_x && celdaActual.y == pos_y){
+        right.onclick();
+        move.onclick();
+    } 
+    
+    contador++;
+}

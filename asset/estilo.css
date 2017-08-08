@@ -42,14 +42,14 @@ img {
     text-shadow: 0.1em 0.1em 0.15em #fff;
     color: darkred;
     position: absolute;
-    left: 370px;
+    left: 340px;
     top: -25px;
 }
 
 #instrucciones {
     font-family: monospace;
     margin-left: 930px;
-    margin-top: 120px;
+    margin-top: 100px;
     margin-right: 25px;
     font-size: 15px;
     padding: 5px;
@@ -67,17 +67,17 @@ td{
 
 #botones{
     position: absolute;
-    top: 310px;
+    top: 290px;
     left: 970px;
 }
 
 button{
-    padding: 10px 35px;
+    padding: 8px 30px;
     margin-bottom: 20px;
     border-radius: 30%;
     overflow:hidden;
     font-family: 'Baloo Paaji', cursive;
-    font-size: 20px;
+    font-size: 15px;
     
     
 }

@@ -36,6 +36,7 @@ function genera(){
                 celda.setAttribute('class', 'salida');
                 celdaActual = {x:i,y:j, direccion:'up'};
                 
+                
             }else if(mapa[i][j]=='W'){
                celda.setAttribute('class', 'fin');
             }else{
@@ -70,11 +71,6 @@ imgAba.setAttribute('src','asset/down.png');
 imgIzq.setAttribute('src','asset/left.png');
 imgDer.setAttribute('src','asset/right.png');
 
-/*imgArr.setAttribute('id','1');
-imgAba.setAttribute('id','2');
-imgIzq.setAttribute('id','3');
-imgDer.setAttribute('id','4');*/
-
 //funcion constructor que llama a las flechas
 function travel(icono) {
     this.icono= icono;
@@ -90,6 +86,9 @@ arrFlecha.push(iconDown);
 arrFlecha.push(iconLeft);
 arrFlecha.push(iconRight);
 
+//iniciamos en el punto 9:2
+filas[celdaActual.x][celdaActual.y].appendChild(iconUp.icono);
+
 //implementamos el boton avanzar
 move.onclick = function(){
     if(celdaActual.direccion=='up'){
@@ -98,7 +97,8 @@ move.onclick = function(){
             celdaActual.x = celdaActual.x-1;
             filas[celdaActual.x][celdaActual.y].appendChild(iconUp.icono);
             filas[celdaActual.x][celdaActual.y].style.backgroundColor = '#BBE4E3';
-        }else{alert('pared!!!!')}
+        }
+        //else{alert('pared!!!!')}
         
     } else if(celdaActual.direccion=='right'){
         if(mapa[celdaActual.x][celdaActual.y+1]=="_"){
@@ -106,7 +106,8 @@ move.onclick = function(){
             celdaActual.y = celdaActual.y+1;
             filas[celdaActual.x][celdaActual.y].appendChild(iconRight.icono);
             filas[celdaActual.x][celdaActual.y].style.backgroundColor = '#BBE4E3';
-        }else{alert('pared!!!!')}
+        }
+        //else{alert('pared!!!!')}
         
     } else if(celdaActual.direccion=='down'){
         if(mapa[celdaActual.x+1][celdaActual.y]=="_"){
@@ -121,7 +122,8 @@ move.onclick = function(){
             filas[celdaActual.x][celdaActual.y].appendChild(iconDown.icono);
             filas[celdaActual.x][celdaActual.y].style.backgroundColor = '#f52f0c';
             alert('fin')
-        }else{alert('pared!!!!')}
+        }
+        //else{alert('pared!!!!')}
         
     } else if(celdaActual.direccion=='left'){
         if(mapa[celdaActual.x][celdaActual.y-1]=="_"){
@@ -129,7 +131,8 @@ move.onclick = function(){
             celdaActual.y = celdaActual.y-1;
             filas[celdaActual.x][celdaActual.y].appendChild(iconLeft.icono);
             filas[celdaActual.x][celdaActual.y].style.backgroundColor = '#BBE4E3';
-        }else{alert('pared!!!!')}
+        }
+        //else{alert('pared!!!!')}
     }
     console.log(celdaActual.x+'---'+celdaActual.y+'---'+celdaActual.direccion);
 }
@@ -192,19 +195,32 @@ exit.onclick = function(){
 }
 
 //implementamos la solucion automatica
-
-var contador=0;
-function correr(){
-    move.onclick();
+solve.onclick = function (){
+    var contador = 1;
+    var inter = setInterval(function (){
     var pos_x = celdaActual.x;
     var pos_y = celdaActual.y;
 
     left.onclick();
     
     if(celdaActual.x == pos_x && celdaActual.y == pos_y){
+        move.onclick();
+    }
+        
+    if(celdaActual.x == pos_x && celdaActual.y == pos_y){
+        right.onclick();
+        move.onclick();
+    }
+    
+    if(celdaActual.x == pos_x && celdaActual.y == pos_y){
         right.onclick();
         move.onclick();
     } 
     
+    if(mapa[celdaActual.x][celdaActual.y]=="W"){
+        clearInterval(inter);
+    }
     contador++;
+  },500)
 }
+

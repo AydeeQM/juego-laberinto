@@ -221,6 +221,6 @@ solve.onclick = function (){
         clearInterval(inter);
     }
     contador++;
-  },500)
+  },300)
 }
 
